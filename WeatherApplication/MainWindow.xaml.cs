@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using WeatherApplication.Models;
 using WeatherApplication.Models.CurrentWeather;
 using WeatherApplication.Services;
 
@@ -15,7 +16,6 @@ namespace WeatherApplication
         public MainWindow()
         {
             httpRequest = new HttpWeatherService();
-
             InitializeComponent();
             var defaultCity = (citySelection.SelectedItem as TextBlock).Text;
 
@@ -26,14 +26,11 @@ namespace WeatherApplication
             var currentCityResponce = await httpRequest.GetCurrentWeather(city);
             var forecastWeatherResponce = await httpRequest.GetForecastWeather(city);
 
-            if (forecastWeatherResponce != null)
-            {
-                currentCity = currentCityResponce;
-                forecastWeather.ItemsSource = forecastWeatherResponce;
-                var a = currentCity.weather[0].Icon;
-                weatherIcon.Source = new BitmapImage(new Uri(a));
-                currentCityName.Text = currentCity.ToString();
-            }
+            currentCity = currentCityResponce;
+            forecastWeather.ItemsSource = forecastWeatherResponce;
+            var a = currentCity.weather[0].Icon;
+            weatherIcon.Source = new BitmapImage(new Uri(a));
+            currentCityName.Text = currentCity.ToString();
         }
 
         private void citySelection_SelectionChanged(object sender, SelectionChangedEventArgs e)

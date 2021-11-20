@@ -18,11 +18,11 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="18*"/>
-            <RowDefinition Height="75*"/>
-            <RowDefinition Height="130*"/>
-            <RowDefinition Height="194*"/>
-            <RowDefinition Height="18*"/>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="106*"/>
+            <RowDefinition Height="119*"/>
+            <RowDefinition Height="11*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -31,28 +31,29 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="1" 
-                    Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image Name="weatherIcon" Width="60" Height="60"></Image>
-            <TextBlock Name="currentCityName" 
-                       Text="{Binding currentCityA.name}"
-                       Style="{StaticResource TextStyle}"></TextBlock>
-            <ComboBox Name="citySelection" 
-                  
+                    Grid.Row="2" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ComboBox Name="citySelection"                  
                   SelectionChanged="citySelection_SelectionChanged"
                   Height="30" 
-                  SelectedIndex="0" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                  SelectedIndex="0">
                 <TextBlock>London</TextBlock>
                 <TextBlock>Kyiv</TextBlock>
                 <TextBlock>Ternopil</TextBlock>
             </ComboBox>
-
+            
+            <Image Name="weatherIcon" Width="60" Height="60"></Image>
+            <TextBlock Name="currentCityName" 
+                       Text="{Binding currentCityA.name}"
+                       Style="{StaticResource TextStyle}"></TextBlock>
         </StackPanel>
         <ListBox Name="forecastWeather" 
-                 Grid.Row="3" HorizontalContentAlignment="Center" 
+                 Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="2"
+                 HorizontalContentAlignment="Center" 
                  Background="#CC3D579A"
-                 Grid.ColumnSpan="3"
-                 Grid.RowSpan="2" BorderBrush="{x:Null}">
-
+                 BorderBrush="{x:Null}" 
+                 Margin="0,212,0,0">
+            
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,10,0"/>
@@ -74,8 +75,6 @@
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-   
-         
         </ListBox>
     </Grid>
 </Window>
