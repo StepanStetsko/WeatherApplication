@@ -8,5 +8,6 @@
         public double temp_max { get; set; }
         public int pressure { get; set; }
         public int humidity { get; set; }
+
     }
 }

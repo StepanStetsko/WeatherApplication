@@ -12,19 +12,19 @@ using WeatherApplication.Models.ForecastWeather;
 
 namespace WeatherApplication.Services
 {
-    internal class HttpRequestService
+    internal class HttpWeatherService
     {
         private readonly HttpClient httpClient;
-        private readonly string apiKey = "57a334b0f068bf4c0fc13f01d3ef5f8b";
-        private readonly LoggerConfiguration logger = new LoggerConfiguration();
+        private readonly string apiKey = "57a334b0f068bf4c0fc13f01d3ef5f8b";       
         private List<CurrentCityForecast> cityForecast;
         private HttpResponseMessage weatherResponse;
 
-        public HttpRequestService()
+        public HttpWeatherService()
         {
             httpClient = new HttpClient();
-            var a = Directory.GetCurrentDirectory() + @"\Logs\log.txt";
-            Log.Logger = new LoggerConfiguration().WriteTo.File(a, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true)
+            var logFilePath = Directory.GetCurrentDirectory() + @"\Logs\log.txt";
+
+            Log.Logger = new LoggerConfiguration().WriteTo.File(logFilePath, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true)
                  .CreateLogger();
         }
 

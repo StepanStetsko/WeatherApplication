@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        Background="#FF929292" Foreground="White">
+        Title="MainWindow" Height="550" Width="900" Foreground="White">
+    <Window.Background>
+        <ImageBrush ImageSource="/WallpaperDog-10940914.jpg"/>
+    </Window.Background>
+    <Window.Resources>
+        <Style x:Key="TextStyle">
+            <Setter Property="ItemsControl.FontFamily" Value="Arial"/>
+            <Setter Property="ItemsControl.Foreground" Value="White"/>
+            <Setter Property="ItemsControl.FontSize" Value="20"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="18*"/>
@@ -20,29 +29,33 @@
             <ColumnDefinition Width="45*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <ComboBox Name="citySelection" 
-                  Grid.Column="1" 
-                  Grid.Row="1" 
-                  SelectionChanged="citySelection_SelectionChanged"
-                  Height="30" 
-                  SelectedIndex="0">
-            <TextBlock>London</TextBlock>
-            <TextBlock>Kyiv</TextBlock>
-            <TextBlock>Ternopil</TextBlock>
-        </ComboBox>
+
         <StackPanel Grid.Column="1" 
-                    Grid.Row="2">
+                    Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image Name="weatherIcon" Width="60" Height="60"></Image>
             <TextBlock Name="currentCityName" 
-                       Text="{Binding currentCityA.name}"></TextBlock>
+                       Text="{Binding currentCityA.name}"
+                       Style="{StaticResource TextStyle}"></TextBlock>
+            <ComboBox Name="citySelection" 
+                  
+                  SelectionChanged="citySelection_SelectionChanged"
+                  Height="30" 
+                  SelectedIndex="0" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                <TextBlock>London</TextBlock>
+                <TextBlock>Kyiv</TextBlock>
+                <TextBlock>Ternopil</TextBlock>
+            </ComboBox>
+
         </StackPanel>
         <ListBox Name="forecastWeather" 
-                 Grid.Row="3" 
-                 Grid.Column="1" HorizontalContentAlignment="Stretch">
+                 Grid.Row="3" HorizontalContentAlignment="Center" 
+                 Background="#CC3D579A"
+                 Grid.ColumnSpan="3"
+                 Grid.RowSpan="2" BorderBrush="{x:Null}">
 
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"/>
+                    <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,10,0"/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
 
@@ -50,15 +63,19 @@
                 <DataTemplate>
                     <StackPanel>
                         <Image Source="{Binding IconPath}"></Image>
-                        <TextBlock Text="{Binding TempMax}"></TextBlock>
-        
-                        <TextBlock Text="{Binding TempMin}"></TextBlock>
-                        
-                        <TextBlock Text="{Binding WeatherDate}"></TextBlock>
-                        <TextBlock Text="{Binding WindSpeed}"></TextBlock>
+                        <TextBlock Text="{Binding TempMax}"
+                                   Style="{StaticResource TextStyle}"></TextBlock>
+                        <TextBlock Text="{Binding TempMin}"
+                                   Style="{StaticResource TextStyle}"></TextBlock>
+                        <TextBlock Text="{Binding WeatherDate}"
+                                   Style="{StaticResource TextStyle}"></TextBlock>
+                        <TextBlock Text="{Binding WindSpeed}"
+                                   Style="{StaticResource TextStyle}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+   
+         
         </ListBox>
     </Grid>
 </Window>

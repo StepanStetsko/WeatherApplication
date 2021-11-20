@@ -9,12 +9,12 @@ namespace WeatherApplication
 {
     public partial class MainWindow : Window
     {
-        private readonly HttpRequestService httpRequest;
+        private readonly HttpWeatherService httpRequest;
         private CurrentWeather currentCity;
 
         public MainWindow()
         {
-            httpRequest = new HttpRequestService();
+            httpRequest = new HttpWeatherService();
 
             InitializeComponent();
             var defaultCity = (citySelection.SelectedItem as TextBlock).Text;
